@@ -1,20 +1,20 @@
-let t = 0; // Time variable to control animations
-let points = []; // Stores points for dots in the "dots mode"
-let mode = 0; // Tracks the current animation (spiral, wave simple, wave effect, dots)
+let t = 0; 
+let points = []; 
+let mode = 0; 
 let popupVisible = true;
-let modeDurations = [1, 1, 15, 15]; // Durations: Spiral (1s), Simple Wave (1s), Enhanced Wave (15s), Interactive Dots (15s)
+let modeDurations = [1, 1, 15, 15]; 
 let modeTimer = 0;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(60);
 
-    // Initial points for the dots
+    
     for (let i = 0; i < 200; i++) {
         points.push(createVector(random(width), random(height)));
     }
 
-    // Handle click to dismiss the popup
+    
     document.body.addEventListener('click', () => {
         if (popupVisible) {
             document.getElementById('popup').style.display = 'none';
@@ -24,32 +24,32 @@ function setup() {
 }
 
 function draw() {
-    background(0); // Black background
+    background(0); 
 
-    let lineColor = color(random(255), random(255), random(255)); // Vibrant line colors
+    let lineColor = color(random(255), random(255), random(255)); 
 
     if (mode === 0) {
-        drawSpiral(lineColor); // Spiral
+        drawSpiral(lineColor); 
     } else if (mode === 1) {
-        drawWaveSimple(lineColor); // Simple Wave
+        drawWaveSimple(lineColor); 
     } else if (mode === 2) {
-        drawWaveEffect(lineColor); // Enhanced Wave Effect
+        drawWaveEffect(lineColor); 
     } else if (mode === 3) {
-        drawDots(lineColor); // Interactive Dots
+        drawDots(lineColor); 
     }
 
-    t += 0.05; // Control animation speed
+    t += 0.05; 
 
-    modeTimer += deltaTime / 1000; // Increment mode timer in seconds
-
-    // Check if it's time to switch modes
+    modeTimer += deltaTime / 1000; 
+    
+    
     if (modeTimer > modeDurations[mode]) {
-        modeTimer = 0; // Reset timer
-        mode = (mode + 1) % modeDurations.length; // Cycle through modes
+        modeTimer = 0; 
+        mode = (mode + 1) % modeDurations.length; 
     }
 }
 
-// Spiral Animation
+
 function drawSpiral(lineColor) {
     stroke(lineColor);
     noFill();
@@ -65,7 +65,7 @@ function drawSpiral(lineColor) {
     endShape();
 }
 
-// Simple Wave Animation
+
 function drawWaveSimple(lineColor) {
     stroke(lineColor);
     noFill();
@@ -78,7 +78,7 @@ function drawWaveSimple(lineColor) {
     endShape();
 }
 
-// Enhanced Wave Effect Animation
+
 function drawWaveEffect(lineColor) {
     stroke(lineColor);
     noFill();
@@ -88,19 +88,19 @@ function drawWaveEffect(lineColor) {
         let y = height / 2 + sin(TWO_PI * (x / 150) + t) * 100;
         vertex(x, y);
 
-        // Add enhanced connection effect between wave points and mouse
+        
         if (dist(x, y, mouseX, mouseY) < 200) {
             strokeWeight(2);
             line(x, y, mouseX, mouseY);
 
-            // Add additional particles for visual effect
+            
             ellipse(x, y, 5, 5);
         }
     }
     endShape();
 }
 
-// Interactive Dots Animation
+
 function drawDots(lineColor) {
     stroke(lineColor);
     strokeWeight(4);
@@ -109,17 +109,17 @@ function drawDots(lineColor) {
         let p = points[i];
         point(p.x, p.y);
 
-        // Connect dots to the mouse
+        
         line(mouseX, mouseY, p.x, p.y);
     }
 }
 
-// Add new points when clicking
+
 function mousePressed() {
     points.push(createVector(mouseX, mouseY));
 }
 
-// Resize canvas on window resize
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
