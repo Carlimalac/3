@@ -1,4 +1,4 @@
-/* Style for the popup */
+
 #popup {
   position: absolute;
   top: 50%;
@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-/* Style for the footer */
+
 footer {
   position: fixed;
   bottom: 10px;
@@ -25,7 +25,7 @@ footer {
   font-size: 14px;
 }
 
-/* Prevent body scrolling */
+
 body {
   margin: 0;
   overflow: hidden;
