@@ -1,10 +1,10 @@
-/* Style for the popup */
+
 #popup {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.8); 
   color: white;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-/* Style for the footer */
+
 footer {
   position: fixed;
   bottom: 10px;
@@ -25,7 +25,7 @@ footer {
   font-size: 14px;
 }
 
-/* Prevent body scrolling */
+
 body {
   margin: 0;
   overflow: hidden;
